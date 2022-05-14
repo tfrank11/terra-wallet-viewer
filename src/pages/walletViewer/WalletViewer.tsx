@@ -35,11 +35,12 @@ const WalletViewer = () => {
           coins.get("uluna")?.toString().replace("uluna", "")
         );
         const currentLunaBalance = microLuna / 1000000;
-        setLunaBalance(currentLunaBalance);
+        if (!isNaN(currentLunaBalance)) setLunaBalance(currentLunaBalance);
         (async () => {
           const lunaPrice = await getLunaPrice();
           setCurrentLunaPrice(lunaPrice);
-          setUsdEquivalent(lunaPrice * currentLunaBalance);
+          if (!isNaN(lunaPrice * currentLunaBalance))
+            setUsdEquivalent(lunaPrice * currentLunaBalance);
           setLoading(false);
         })();
       });
@@ -83,14 +84,14 @@ const WalletViewer = () => {
               <Button
                 size="small"
                 onClick={() => {
-                  var url = "http://google.com";
+                  var url = "https://terra-wallet-viewer.web.app/";
                   var text = `Wow! My ${lunaBalance.toFixed(
                     2
-                  )} luna is only worth ${usdEquivalent.toFixed(2)} USD!`;
+                  )} $LUNA is only worth ${usdEquivalent.toFixed(2)} USD!`;
                   window.open(
                     "http://twitter.com/share?url=" +
-                      // encodeURIComponent(url) +
-                      // "&text=" +
+                      encodeURIComponent(url) +
+                      "&text=" +
                       encodeURIComponent(text),
                     "",
                     "left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0"
