@@ -10,4 +10,5 @@ Currently this app supports the following wallets:
 - XDefi
 - Leap
 - Falcon
+- BitKeep
 - Wallet Connect
